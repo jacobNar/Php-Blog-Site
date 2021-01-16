@@ -70,7 +70,7 @@ if($admin == 1){ ?>
     $num_rows = mysqli_num_rows($result);
 
     while($row = mysqli_fetch_assoc($result)){
-        echo  "<div><img src='Photos/" . $row['src'] . "' alt='" . $row['description'] . "'>
+        echo  "<div class='zoom'><img src='Photos/" . $row['src'] . "' alt='" . $row['description'] . "'>
                <p>" . $row['description'] . "<br>Year Taken: " . date("Y",strtotime($row['date'])) ."</p>";
         if($admin == 1){ echo "<p><a href='edit-photo.php?id=". $row['id'] . "'>Edit Details</a></p>";}
         echo "</div>";
@@ -79,5 +79,10 @@ if($admin == 1){ ?>
 ?>
 </section>
 </main>
-
+<script src="jquery.zoom.js"></script>
+<script>
+$(document).ready(function(){
+    $('.zoom').zoom();
+  });
+</script>
 <?php include("footer.php"); ?>
