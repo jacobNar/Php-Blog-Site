@@ -1,0 +1,180 @@
+body{
+    text-align: center;
+    color: black;
+    font-family:'Source Sans Pro', sans-serif;
+    font-size: 18px;
+}
+header {
+    display: block;
+}
+
+.familytext{
+    color: #073766; 
+    font-family: 'Prata', serif;
+}
+
+
+nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: #073766;
+    text-align: left;
+}
+
+nav a {
+    color:white;
+    flex: 1 1 15%;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.5s;
+    padding: 10px 0;
+}
+
+
+nav a:hover {
+    background-color: #990474;
+    color: white;
+    text-decoration: none;
+}
+
+.gallery {
+        background-color: white;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap; 
+        justify-content: space-around;
+        padding: 50px 0;
+}
+    
+.gallery div {
+    flex: 0 0 auto;
+    max-width: 45%;
+    width: auto;
+    border: 3px solid black;
+    margin: 20px 0;
+    box-shadow: 10px 10px 3px #ccc;
+}
+
+.gallery div img{
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+        margin: 0;
+        animation-delay: .3s; 
+        animation-duration: 4s;
+}
+
+.gallery div p{
+        text-align: center;
+        color: black;
+        font-size: 20px;
+    }
+    
+
+.wrapper {
+    width: 90%;
+    background: white;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+img{
+    width: 100%;
+    height: auto;
+}
+
+h1, h2 {
+    font-size: 2.5em;
+}
+
+#blogposts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-around;
+    color: black;
+    background-color: white;
+}
+
+#blogposts div {
+    flex: 0 0 30%;
+    margin: 10px 0;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 10px 10px 10px #ccc;
+    animation-duration: 2s;
+    border: 2px solid black;
+}
+
+#blogposts div img{
+        max-height: 300px;
+    border: none;
+    width: 100%;
+    height: auto;
+}
+
+.bioimg {
+    width: 30%;
+    height: auto;
+    margin: 20px auto;
+}
+
+p {
+    margin: 20px 0;
+    text-align: left;
+    padding: 0 20px;
+}
+
+form {
+    width: 80%;
+    margin: 50px auto;
+}
+
+label {
+    display:block;
+    
+}
+
+.jqte_tool.jqte_tool_1 .jqte_tool_label {
+    height: 30px;
+}
+
+input[type=file] {
+    display: block;
+    margin: 10px auto;
+}
+
+input[type=submit] {
+    display: block;
+    margin: 10px auto;
+}
+
+.formContainer {
+    width: 50%;
+    background-color: #073766;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+}
+
+.modal {
+    overflow:scroll;
+    max-height: 500px;
+}
+
+.modal a.close-modal {
+    top: 0;
+    right: 0;
+}
+
+li {
+    text-align: left;
+}
