@@ -91,7 +91,7 @@ while($date <= $maxDate){
     if($num_rows != 0){ echo "<h2>$date - " . ($date + 9) . "</h2><section class='gallery'>";} else {echo "";}
     
     while($row = mysqli_fetch_assoc($result)){
-        echo  "<div class='zoom'><img src='Photos/" . $row['src'] . "' alt='" . $row['description'] . "'>
+        echo  "<div class='gallery-div'><div class='zoom'><img src='Photos/" . $row['src'] . "' alt='" . $row['description'] . "'></div>
                <p>" . $row['description'] . "<br>" . $row['date'] ."</p>";
                if($admin == 1){ echo "<p><a href='edit-photo.php?id=". $row['id'] . "'>Edit Details</a></p>";}
                echo "</div>";

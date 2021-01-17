@@ -32,8 +32,8 @@ if(isset($_POST['submit'])){
     $message = '<p>We have received a password reset request. The link to reset your password is below and will expire in 1 hour.</p>';
     $message .= "<p>Link:<br><a href='$url'>$url</a> </p>";
     
-    $headers = "From: <donotreply@bracketswebdesing.com>\r\n";
-    $headers = "Content-type: text/html\r\n";
+    $headers = "From: <donotreply@bracketswebdesign.com>\r\n";
+    $headers .= "Content-type: text/html\r\n";
     
     mail($to, $subject, $message, $headers);
     

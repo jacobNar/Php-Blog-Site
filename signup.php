@@ -14,6 +14,17 @@ if(isset($POST['submit'])){
 
         if(mysqli_query($conn, $query)){
             $success = true;
+            
+            $to = "jacobnarayan1998@gmail.com, jdnarayan56W@gmail.com";
+            $subject = "New Sign Up";
+            $message = "<p>Hello Admin(s). A new user: $fname $lname, has requested access to the site.</p>";
+            $message .= "<p>Approve their access <a href='burindescendants.org/approve.php'>here</a>. </p>";
+    
+            $headers = "From: <SignupAlert@bracketswebdesign.com>\r\n";
+            $headers .= "Content-type: text/html\r\n";
+    
+            mail($to, $subject, $message, $headers);
+    
         }
 
     }

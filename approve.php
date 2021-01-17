@@ -17,6 +17,7 @@ include("header.php");
 if(isset($_POST['submit'])){
     $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
     $pid = $POST['id'];
+    $email = $POST['email'];
     $approve = $POST['approve'];
     $blog = $POST['blog'];
     $admin = $POST['admin'];
@@ -24,6 +25,26 @@ if(isset($_POST['submit'])){
     
     if(mysqli_query($conn, $sql)){
         echo "<h1>User has been updated!</h1>";
+    
+        $to = $email;
+        $subject = "Your Account Permissions Have Been Updated";
+        $message = "<p>Hello. Your account permissions at burindescendants.org have been updated. Your permissions are as follows:</p>";
+        if($approve == 1){
+            $message .= "<p>Site Access: Granted</p>";
+        }else {
+            $message .= "<p>Site Access: Denied</p>";
+        }
+        if($blog == 1){
+            $message .= "<p>Blog Access: Granted</p>";
+        }else {
+            $message .= "<p>Blog Access: Denied</p>";
+        }
+        
+        $headers = "From: <Account@bracketswebdesign.com>\r\n";
+        $headers .= "Content-type: text/html\r\n";
+
+        mail($to, $subject, $message, $headers);
+        
     }else { 
         echo mysqli_error($conn);
         echo $sql;
@@ -93,6 +114,7 @@ if(isset($_POST['family-tree-submit'])){
                         $admin = $row['admin'];
                         $approved = $row['approved'];
                         $blog = $row['blog'];
+                        $email = $row['email'];
                         $name = $fname . $lname;
                         $id = $row['id'];
                         
@@ -100,6 +122,7 @@ if(isset($_POST['family-tree-submit'])){
                         echo "<form action='approve.php' method='post'>";
                         echo "<h4>$fname $lname</h4>";
                         echo "<input type='hidden' name='id' value='$id'>";
+                        echo "<input type='hidden' name='email' value='$email'>";
                         echo "<label for='approve'>Site Access</label>";
                         echo "<p>Approve <input class='w3-radio' type='radio' name='approve' value='1' ";
                         if($approved == 1){ echo "checked";} 
