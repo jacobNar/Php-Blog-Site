@@ -8,6 +8,10 @@ header {
     display: block;
 }
 
+main {
+    margin-bottom: 100px;
+}
+
 .familytext{
     color: #073766; 
     font-family: 'Prata', serif;
@@ -177,4 +181,16 @@ input[type=submit] {
 
 li {
     text-align: left;
+}
+
+.userTable {
+    margin: 0 auto; 
+    border: thin solid black;
+
+}
+
+.userTable td, .userTable th {
+    padding: 10px;
+    border: thin solid black;
+    border-collapse: collapse;
 }

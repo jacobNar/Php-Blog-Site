@@ -123,27 +123,25 @@ if(isset($_POST['family-tree-submit'])){
                         echo "<h4>$fname $lname</h4>";
                         echo "<input type='hidden' name='id' value='$id'>";
                         echo "<input type='hidden' name='email' value='$email'>";
-                        echo "<label for='approve'>Site Access</label>";
-                        echo "<p>Approve <input class='w3-radio' type='radio' name='approve' value='1' ";
+                        echo "<label style='font-weight:bold' for='approve'>Site Access</label>";
+                        echo "<p style='display:inline-block;'>Approve <input class='w3-radio' type='radio' name='approve' value='1' ";
                         if($approved == 1){ echo "checked";} 
                         echo " ></p>";
-                        echo "<p>Deny <input class='w3-radio' type='radio' name='approve' value='0' ";
+                        echo "<p style='display:inline-block;'>Deny <input class='w3-radio' type='radio' name='approve' value='0' ";
                         if($approved == 0){ echo "checked";} 
                         echo "></p>";
-                        echo "<hr>";
-                        echo "<label for='blog'>Blog Permission</label>";
-                        echo "<p>Approve <input class='w3-radio' type='radio' name='blog' value='1' "; 
+                        echo "<label style='font-weight:bold' for='blog'>Blog Permission</label>";
+                        echo "<p style='display:inline-block;'>Approve <input class='w3-radio' type='radio' name='blog' value='1' "; 
                         if($blog == 1){ echo "checked";} 
                         echo "></p>";
-                        echo "<p>Deny <input class='w3-radio' type='radio' name='blog' value='0' ";
+                        echo "<p style='display:inline-block;'>Deny <input class='w3-radio' type='radio' name='blog' value='0' ";
                          if($blog == 0){ echo "checked";} 
                         echo "></p>";
-                        echo "<hr>";
-                        echo "<label for='admin'>Admin Permission</label>";
-                        echo "<p>Approve <input class='w3-radio' type='radio' name='admin' value='1' "; 
+                        echo "<label style='font-weight:bold' for='admin'>Admin Permission</label>";
+                        echo "<p style='display:inline-block;'>Approve <input class='w3-radio' type='radio' name='admin' value='1' "; 
                         if($admin == 1){ echo "checked";} 
                         echo "></p>";
-                        echo "<p>Deny <input class='w3-radio' type='radio' name='admin' value='0' ";
+                        echo "<p style='display:inline-block;'>Deny <input class='w3-radio' type='radio' name='admin' value='0' ";
                          if($admin == 0){ echo "checked";} 
                         echo "></p>";
                         echo "<input type='submit' name='submit' value='Submit'>";
@@ -154,8 +152,27 @@ if(isset($_POST['family-tree-submit'])){
                     echo mysqli_error($conn);
                     echo $query;
                 }
-                
+
             ?>
+    </section>
+    <section>
+        <h3>User Visit Counts</h3>
+        <?php 
+            echo "<table class='userTable'>";
+            echo "<tr><th>Name</th><th>Visits</th></tr>";
+            $query = "SELECT * FROM `Users`";
+            $result = mysqli_query($conn, $query);
+
+            if($result){
+                while($row = mysqli_fetch_assoc($result)){
+                    $fname = $row['fname'];
+                    $lname = $row['lname'];
+                    $signins = $row['signins'];
+                    echo "<tr><td>$fname $lname</td><td>$signins</td></tr>";
+                }
+            }
+            echo "</table>";
+        ?>
     </section>
 </main>
 <?php include("footer.php"); ?>

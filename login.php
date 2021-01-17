@@ -14,12 +14,19 @@ if(isset($_POST['submit'])){
     if($row != ""){
         session_start();
         
+        $count = $row['signins'] + 1;
+        $id = $row['id'];
+        $sql = "UPDATE `Users` SET `signins` =  $count WHERE `id` = $id";
+        mysqli_query($conn, $sql);
+
         $_SESSION['fname'] = $row['fname'];
         $_SESSION['lname'] = $row['lname'];
         $_SESSION['admin'] = $row['admin'];
         $_SESSION['approved'] = $row['approved'];
         $_SESSION['blog'] = $row['blog'];
         $_SESSION['id'] = $row['id'];
+
+
         
         if(isset($_GET['redirect']) && $_GET['redirect'] != ""){
             $redirect = $_GET['redirect'];
