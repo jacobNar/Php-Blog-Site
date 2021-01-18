@@ -22,6 +22,7 @@ if(isset($_POST['submit'])){
     $death_date = $POST['dyear'] . '-' . $POST['dmonth'] . '-' . $POST['dday'];
     $bio = format_bio($_POST['bio']);
     $p_military = $POST['military'];
+    $country_served = $POST['country_served'];
     $target_dir = "Photos/";
     $target_file = $target_dir . basename($_FILES["featured_img"]["name"]);
     $uploadOk = 1;
@@ -39,7 +40,7 @@ if(isset($_POST['submit'])){
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["featured_img"]["tmp_name"], $target_file)) {
-            $query = "INSERT INTO `Bios` (`fname`, `lname`, `birth_date`, `death_date`, `bio`,`military`, `featured_img`) VALUES ('$fname', '$lname', '$birth_date', '$death_date', '$bio', $p_military, '$src');";
+            $query = "INSERT INTO `Bios` (`fname`, `lname`, `birth_date`, `death_date`, `bio`,`military`, `country_served`, `featured_img`) VALUES ('$fname', '$lname', '$birth_date', '$death_date', '$bio', $p_military, '$country_served', '$src');";
             
             if(mysqli_query($conn, $query)){
                 echo "The file ". basename( $_FILES["featured_img"]["name"]). " has been uploaded.";
@@ -90,6 +91,13 @@ if(isset($_POST['submit'])){
             <option value="0">No</option>
             <option value="1">Yes</option>
         </select>
+        <label for="military">Country Served</label>
+         <select name="country_served">
+            <option></option>
+            <option value="USA">United States</option>
+            <option value="Germany">Germany</option>
+            <option value="Israel">Israel</option>
+        </select>
         <input type="file" name="featured_img">
 
         <textarea name="bio">
@@ -115,6 +123,7 @@ if(isset($_POST['submit'])){
                 $lname = $row['lname'];
                 $name = "$fname $lname";
                 $military = $row['military'];
+                $country_served = $row['country_served'];
                 
                 // $bdate = (isset($row['birth_date'])) ? $row['birth_date'] : "";
                 // $ddate = (isset($row['death_date'])) ? $row['death_date'] : "";
@@ -123,7 +132,9 @@ if(isset($_POST['submit'])){
                 echo "<div>
                         <a href='biography.php?id=$id'><img src='Photos/$image'alt='$name'></a>
                         <p style='color: black; display: inline;'>$name</p>";
-                        echo ($military == 1) ? "<img style='width: 10%; display: inline;' src='Photos/american-flag-icon.png'>" : "";
+                        echo ($military == 1 && $country_served == 'USA') ? "<img style='width: 10%; display: inline;' src='Photos/american-flag-icon.png'>" : "";
+                        echo  ($military == 1 && $country_served == 'Germany') ? "<img style='width: 10%; display: inline;' src='Photos/germany-flag.jpg'>" : "";
+                        echo  ($military == 1 && $country_served == 'Israel') ? "<img style='width: 10%; display: inline;' src='Photos/israel-flag.png'/>" : "";
                     
                 echo "</div>";
                 

@@ -24,6 +24,7 @@ if(isset($_POST['submit'])){
     $u_bio = format_bio($_POST['bio']);
     $id = $POST['id'];
     $military = $POST['military'];
+    $country_served = $POST['country_served'];
     
     if($_FILES['featured_img']['name'] != "") {
         $target_dir = "Photos/";
@@ -39,7 +40,7 @@ if(isset($_POST['submit'])){
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["featured_img"]["tmp_name"], $target_file)) {
-                $query = "UPDATE `Bios` SET`fname` = '$fname', `lname` = '$lname', `birth_date` = '$bdate', `death_date` = '$ddate', `bio` = '$u_bio', `military` = $military, `featured_img` = '{$_FILES['featured_img']['name']}'  WHERE `bio_id` = $id LIMIT 1; ;";
+                $query = "UPDATE `Bios` SET`fname` = '$fname', `lname` = '$lname', `birth_date` = '$bdate', `death_date` = '$ddate', `bio` = '$u_bio', `military` = $military, `country_served` = '$country_served', `featured_img` = '{$_FILES['featured_img']['name']}'  WHERE `bio_id` = $id LIMIT 1; ;";
             
                 if(mysqli_query($conn, $query)){
                     $file_upload_success = true;
@@ -53,7 +54,7 @@ if(isset($_POST['submit'])){
             }
         }
     }else {
-        $query = "UPDATE `Bios` SET `fname` = '$fname', `lname` = '$lname', `birth_date` = '$bdate', `death_date` = '$ddate', `military` = $military, `bio` = '$u_bio' WHERE `bio_id` = $id LIMIT 1;";
+        $query = "UPDATE `Bios` SET `fname` = '$fname', `lname` = '$lname', `birth_date` = '$bdate', `death_date` = '$ddate', `military` = $military, `country_served` = '$country_served', `bio` = '$u_bio' WHERE `bio_id` = $id LIMIT 1;";
             
         if(mysqli_query($conn, $query)){
             $update_success = true;
@@ -125,11 +126,18 @@ if($update_success == true || $file_upload_success == true){
         <input class="w3-input"type="text" size="2" maxlength="2" name="dmonth" value="<?php echo $dmonth; ?>">
         <label="dmonth">Day (DD)</label>
         <input class="w3-input"type="text" size="2" maxlength="2" name="dday" value="<?php echo $dday; ?>">
-                        <label for="military">Military Service</label>
+        <label for="military">Military Service</label>
         <select name="military">
             <option></option>
             <option value="0">No</option>
             <option value="1">Yes</option>
+        </select>
+         <label for="country_served">Country Served</label>
+         <select name="country_served">
+            <option></option>
+            <option value="USA">United States</option>
+            <option value="Germany">Germany</option>
+            <option value="Israel">Israel</option>
         </select>
         <textarea name="bio">
              <?php echo $bio; ?>
